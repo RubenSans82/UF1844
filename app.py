@@ -23,10 +23,11 @@ def nuevo_alumno():
     if request.method == 'POST':
         nombre = request.form['nombre']
         apellidos = request.form['apellidos']
+        dni = request.form['dni']
         email = request.form['email']
         telefono = request.form['telefono']
         
-        alumno = Alumno(None, nombre, apellidos, email, telefono)
+        alumno = Alumno(None, nombre, apellidos, dni, email, telefono)
         alumno.save()
         
         flash('Alumno registrado correctamente', 'success')
@@ -41,6 +42,7 @@ def editar_alumno(id):
     if request.method == 'POST':
         alumno.nombre = request.form['nombre']
         alumno.apellidos = request.form['apellidos']
+        alumno.dni = request.form['dni']
         alumno.email = request.form['email']
         alumno.telefono = request.form['telefono']
         
