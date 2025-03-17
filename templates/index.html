@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4 text-primary"><strong>Sistema de Gestión de Notas</strong></h1>
+    <p class="lead fs-4">Bienvenido al sistema de gestión de calificaciones de Academia Escolar.</p>
+    <hr class="my-4">
+    <p class="text-muted">Utilice las opciones del menú para acceder a las diferentes funcionalidades.</p>
+    
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-people-fill"></i> Alumnos</h5>
+                    <p class="card-text mb-4">Gestión de alumnos: altas, bajas y modificaciones.</p>
+                    <a href="/alumnos" class="btn btn-primary w-100 mt-auto">
+                        <i class="bi bi-arrow-right"></i> Ir a Alumnos
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-file-earmark-text"></i> Calificaciones</h5>
+                    <p class="card-text mb-4">Gestión de calificaciones de los alumnos.</p>
+                    <a href="/calificaciones" class="btn btn-primary w-100 mt-auto">
+                        <i class="bi bi-arrow-right"></i> Ir a Calificaciones
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-person-plus"></i> Nuevo Alumno</h5>
+                    <p class="card-text mb-4">Registrar un nuevo alumno en el sistema.</p>
+                    <a href="/alumnos/nuevo" class="btn btn-success w-100 mt-auto">
+                        <i class="bi bi-plus-circle"></i> Registrar Alumno
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Calificaciones{% endblock %}
+
+{% block content %}
+<h2>Listado de Calificaciones</h2>
+
+<div class="mb-3">
+    <a href="/calificaciones/nueva" class="btn btn-success">Nueva Calificación</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Alumno</th>
+                <th>Asignatura</th>
+                <th>Nota</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for calificacion in calificaciones %}
+            <tr>
+                <td>{{ calificacion.alumno.apellidos }}, {{ calificacion.alumno.nombre }}</td>
+                <td>{{ calificacion.asignatura.nombre }}</td>
+                <td>{{ calificacion.nota }}</td>
+                <td>{{ calificacion.fecha_evaluacion }}</td>
+                <td>
+                    <a href="/calificaciones/editar/{{ calificacion.id }}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="/calificaciones/eliminar/{{ calificacion.id }}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Está seguro de eliminar esta calificación?')">Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">No hay calificaciones registradas</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if calificacion %}Editar Calificación{% else %}Nueva Calificación{% endif %}
+{% endblock %}
+
+{% block content %}
+<h2>{% if calificacion %}Editar Calificación{% else %}Nueva Calificación{% endif %}</h2>
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="alumno" class="form-label">Alumno</label>
+        <select name="alumno_id" id="alumno" class="form-select" required>
+            <option value="">Seleccione un alumno</option>
+            {% for alumno in alumnos %}
+                <option value="{{ alumno.id }}" {% if calificacion and calificacion.alumno_id == alumno.id %}selected{% endif %}>
+                    {{ alumno.apellidos }}, {{ alumno.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">
+            Por favor seleccione un alumno.
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="asignatura" class="form-label">Asignatura</label>
+        <select name="asignatura_id" id="asignatura" class="form-select" required>
+            <option value="">Seleccione una asignatura</option>
+            {% for asignatura in asignaturas %}
+                <option value="{{ asignatura.id }}" {% if calificacion and calificacion.asignatura_id == asignatura.id %}selected{% endif %}>
+                    {{ asignatura.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">
+            Por favor seleccione una asignatura.
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="nota" class="form-label">Nota</label>
+        <input type="number" class="form-control" id="nota" name="nota" min="0" max="10" step="0.01" 
+               value="{{ calificacion.nota if calificacion else '' }}" required>
+        <div class="invalid-feedback">
+            Por favor ingrese una nota válida (0-10).
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha de Evaluación</label>
+        <input type="date" class="form-control" id="fecha" name="fecha_evaluacion" 
+               value="{{ calificacion.fecha_evaluacion if calificacion else '' }}" required>
+        <div class="invalid-feedback">
+            Por favor seleccione una fecha.
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <textarea class="form-control" id="observaciones" name="observaciones" rows="3">{{ calificacion.observaciones if calificacion else '' }}</textarea>
+    </div>
+    
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="/calificaciones" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+{% endblock %}

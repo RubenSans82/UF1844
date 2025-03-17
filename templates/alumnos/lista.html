@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Alumnos{% endblock %}
+
+{% block content %}
+<h2>Listado de Alumnos</h2>
+
+<div class="mb-3">
+    <a href="/alumnos/nuevo" class="btn btn-success">Nuevo Alumno</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.apellidos }}</td>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.dni }}</td>
+                <td>{{ alumno.email }}</td>
+                <td>{{ alumno.telefono }}</td>
+                <td>
+                    <a href="/informes/alumno/{{ alumno.id }}" class="btn btn-info btn-sm">Ver notas</a>
+                    <a href="/alumnos/editar/{{ alumno.id }}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="/alumnos/eliminar/{{ alumno.id }}" class="btn btn-danger btn-sm" 
+                       onclick="return confirm('¿Está seguro de eliminar este alumno?')">Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">No hay alumnos registrados</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
